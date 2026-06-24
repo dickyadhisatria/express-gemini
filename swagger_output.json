@@ -1,0 +1,222 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Gemini AI Clean API",
+    "description": "REST API Terintegrasi Gemini 2.5 Flash menggunakan Clean Architecture dan Autogen",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "description": "Server Lokal",
+      "url": "http://localhost:3000/api/ai"
+    },
+    {
+      "description": "Server Staging",
+      "url": "https://hsbp3wdb-3000.asse.devtunnels.ms/api/ai"
+    }
+  ],
+  "paths": {
+    "/generate-text": {
+      "post": {
+        "tags": [
+          "Gemini AI"
+        ],
+        "summary": "Menghasilkan teks dari prompt biasa",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Payload data untuk menghasilkan teks",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "object"
+                },
+                "properties": {
+                  "type": "object",
+                  "properties": {
+                    "model": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "example": {
+                          "type": "string",
+                          "example": "gemini-2.5-flash"
+                        }
+                      }
+                    },
+                    "prompt": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "string"
+                        },
+                        "example": {
+                          "type": "string",
+                          "example": "Jelaskan apa itu AI"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "example": "gemini-2.5-flash"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "example": "Jelaskan apa itu AI"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/generate-from-image": {
+      "post": {
+        "tags": [
+          "Gemini AI Multimodal"
+        ],
+        "summary": "Analisis Gambar",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "example": "gemini-2.5-flash"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "example": "Deskripsikan gambar ini"
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Berkas gambar"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/generate-from-document": {
+      "post": {
+        "tags": [
+          "Gemini AI Multimodal"
+        ],
+        "summary": "Ringkas Dokumen (PDF, TXT)",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "example": "gemini-2.5-flash"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "example": "Tolong buat ringkasan dari dokumen ini"
+                  },
+                  "document": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Berkas dokumen (PDF, TXT)"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/generate-from-audio": {
+      "post": {
+        "tags": [
+          "Gemini AI Multimodal"
+        ],
+        "summary": "Transkrip Audio",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "example": "gemini-2.5-flash"
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "example": "Tolong buatkan transkrip dari rekaman ini"
+                  },
+                  "audio": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "Berkas audio"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
