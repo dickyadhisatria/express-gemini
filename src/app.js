@@ -2,10 +2,25 @@ import 'dotenv/config';
 import express from 'express';
 import fs from 'fs';
 import swaggerUi from 'swagger-ui-express';
+import morgan from 'morgan';
+import rateLimit from "express-rate-limit";
 import aiRoutes from './routes/aiRoute.js';
 
 const app = express();
 app.use(express.json());
+app.use(morgan('dev'));
+app.use(express.json())
+
+const apiLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 15,
+    message: {
+        status: 'error',
+        message: 'Terlalu banyak permintaan dari IP ini, silakan coba lagi nanti.'
+    }
+})
+
+app.use('/api', apiLimiter);
 
 // Membaca file hasil autogen
 const swaggerDocument = JSON.parse(fs.readFileSync(new URL('../swagger_output.json', import.meta.url)));
