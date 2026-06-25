@@ -24,6 +24,7 @@ It also features auto-generated API documentation using **Swagger UI**, making i
 - **AI Integration:** [@google/genai](https://www.npmjs.com/package/@google/genai) (Gemini 2.5 Flash)
 - **File Handling:** [Multer](https://www.npmjs.com/package/multer) (Memory Storage)
 - **Documentation:** [Swagger Autogen](https://swagger-autogen.github.io/) & Swagger UI Express
+- **Logger:**  [Morgan](https://expressjs.com/en/resources/middleware/morgan/) (Logger Middleware)
 
 ---
 
@@ -73,11 +74,11 @@ http://localhost:3000/api-docs
 express-gemini/
 ├── src/
 │   ├── config/          # API Key and Swagger configuration
-│   ├── middlewares/     # Multer setup for memory storage
+│   ├── middlewares/     # Multer setup for memory storage and Error Handling
 │   ├── services/        # Business logic & Gemini AI prompt handling
 │   ├── controllers/     # HTTP Request/Response and Swagger Annotations
 │   ├── routes/          # API endpoint definitions
-│   └── app.js           # Express App Entry Point
+│   └── app.js           # Express App Entry Point and Rate Limiting
 ├── .env                 # Environment variables (Ignored in Git)
 ├── package.json         # Dependencies and scripts
 ├── swagger.js           # Swagger autogen script
@@ -85,6 +86,6 @@ express-gemini/
 ```
 
 ## 🎓 Acknowledgements
-This project was built as part of the Hacktiv8: AI Productivity and AI API Integration for Developers program, supported by Google.org and the Asian Development Bank.
+This project was built as part of the Hacktiv8: AI Productivity and AI API Integration for Developers program (@hactiv8), supported by Google.org and the Asian Development Bank.
 
 Created by Dicky Adhi Satria - 2026
