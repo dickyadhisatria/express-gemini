@@ -86,6 +86,6 @@ express-gemini/
 ```
 
 ## 🎓 Acknowledgements
-This project was built as part of the Hacktiv8: AI Productivity and AI API Integration for Developers program (@hactiv8), supported by Google.org and the Asian Development Bank.
+This project was built as part of the Hacktiv8: AI Productivity and AI API Integration for Developers program [@hacktiv8](https://github.com/hacktiv8), supported by Google.org and the Asian Development Bank.
 
 Created by Dicky Adhi Satria - 2026
