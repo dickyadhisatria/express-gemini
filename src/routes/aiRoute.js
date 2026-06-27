@@ -31,6 +31,7 @@ router.post('/generate-text', validate(generateTextSchema), (req, res) => {
                     schema: {
                         type: "object",
                         properties: {
+                            persona: { type: "string", example: "default-persona" },
                             model: { type: "string", example: "gemini-3.1-flash-lite" },
                             prompt: { type: "string", example: "Jelaskan apa itu AI" }
                         }
@@ -53,6 +54,7 @@ router.post('/generate-from-image', upload.single('image'), validate(generateFro
                     schema: {
                         type: "object",
                         properties: {
+                            persona: { type: "string", example: "default-persona" },
                             model: { type: "string", example: "gemini-3.1-flash-lite" },
                             prompt: { type: "string", example: "Deskripsikan gambar ini" },
                             image: { type: "string", format: "binary", description: "Berkas gambar" }
@@ -76,6 +78,7 @@ router.post('/generate-from-document', upload.single('document'), validate(gener
                     schema: {
                         type: "object",
                         properties: {
+                            persona: { type: "string", example: "default-persona" },
                             model: { type: "string", example: "gemini-3.1-flash-lite" },
                             prompt: { type: "string", example: "Tolong buat ringkasan dari dokumen ini" },
                             document: { type: "string", format: "binary", description: "Berkas dokumen (PDF, TXT)" }
@@ -99,6 +102,7 @@ router.post('/generate-from-audio', upload.single('audio'), validate(generateFro
                     schema: {
                         type: "object",
                         properties: {
+                            persona: { type: "string", example: "default-persona" },
                             model: { type: "string", example: "gemini-3.1-flash-lite" },
                             prompt: { type: "string", example: "Tolong buatkan transkrip dari rekaman ini" },
                             audio: { type: "string", format: "binary", description: "Berkas audio" }
@@ -121,6 +125,7 @@ router.post('/generate-chat', validate(generateChatSchema), (req, res) => {
                     schema: {
                         type: "object",
                         properties: {
+                            persona: { type: "string", example: "default-persona" },
                             model: { type: "string", example: "gemini-3.1-flash-lite" },
                             conversation: {
                                 type: "array",

@@ -4,19 +4,23 @@ const systemInstructionText = "Kamu adalah asisten AI Senior dari Hacktiv8. Sela
 const systemInstructionMultimodal = "Kamu adalah analis data AI. Berikan analisis yang tajam dan akurat berdasarkan file yang diberikan."
 const systemInstructionChat = "Kamu adalah asisten AI yang membantu pengguna dengan pertanyaan mereka. Jawab dengan jelas, ramah, dan gunakan bahasa Indonesia. Apabila pengguna meminta mu bertindak sebagai persona tertentu, lakukan sesuai permintaan mereka."
 
-export const generateTextService = async (model, prompt) => {
+export const generateTextService = async (persona, model, prompt) => {
+    const systemInstruction = persona === 'default-persona' ? systemInstructionText : `${persona} Jawab pertanyaan pengguna sesuai dengan persona ini.`;
+    console.log(`Menggunakan model: ${model || GEMINI_MODEL} dengan persona: ${persona}`);
     const response = await ai.models.generateContent({
         model: model || GEMINI_MODEL,
         contents: prompt,
         config: {
-            systemInstruction: systemInstructionText,
+            systemInstruction: systemInstruction,
             temperature: 0.7,
         }
     });
     return response.text;
 };
 
-export const generateMultimodalService = async (model, prompt, file) => {
+export const generateMultimodalService = async (persona, model, prompt, file) => {
+    const systemInstruction = persona === 'default-persona' ? systemInstructionMultimodal : `${persona} Jawab pertanyaan pengguna sesuai dengan persona ini.`;
+    console.log(`Menggunakan model: ${model || GEMINI_MODEL} dengan persona: ${persona}`);
     // Konversi buffer file menjadi base64
     if (!file || !file.buffer) {
         throw new Error("File tidak valid atau tidak ada buffer.");
@@ -31,14 +35,16 @@ export const generateMultimodalService = async (model, prompt, file) => {
             { inlineData: { data: base64Data, mimeType: file.mimetype } }
         ],
         config: {
-            systemInstruction: systemInstructionMultimodal,
+            systemInstruction: systemInstruction,
             temperature: 0.4,
         }
     });
     return response.text;
 };
 
-export const generateChatService = async (model, conversation) => {
+export const generateChatService = async (persona, model, conversation) => {
+    const systemInstruction = persona === 'default-persona' ? systemInstructionChat : `${persona} Jawab pertanyaan pengguna sesuai dengan persona ini.`;
+    console.log(`Menggunakan model: ${model || GEMINI_MODEL} dengan persona: ${persona}`);
     // Validasi format input dari frontend
     if (!Array.isArray(conversation)) {
         throw new Error('Messages must be an array!');
@@ -56,7 +62,7 @@ export const generateChatService = async (model, conversation) => {
         contents, // 
         config: {
             temperature: 0.5, // Mengontrol kreativitas (0.0 - 1.0)
-            systemInstruction: systemInstructionChat, // Instruksi sistem untuk model
+            systemInstruction: systemInstruction, // Instruksi sistem untuk model
         }
     });
 

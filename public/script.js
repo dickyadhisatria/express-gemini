@@ -3,6 +3,7 @@ const form = document.getElementById('chat-form');
 const input = document.getElementById('user-input');
 const chatBox = document.getElementById('chat-box');
 const modelSelect = document.getElementById('model-select');
+const personaSelect = document.getElementById('persona-select');
 const sendBtn = form.querySelector('.send-btn');
 
 // Variabel untuk menyimpan riwayat percakapan (Multi-turn)
@@ -63,6 +64,7 @@ form.addEventListener('submit', async function (e) {
       // Mengirimkan seluruh riwayat agar AI memahami konteks
       body: JSON.stringify({
         model: modelSelect.value, // Mengambil nilai dari select box
+        persona: personaSelect.value, // Mengambil nilai dari select box
         conversation: conversationHistory
       })
     });

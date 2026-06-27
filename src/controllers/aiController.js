@@ -18,8 +18,8 @@ export const generateText = async (req, res) => {
         }
     */
     try {
-        const { model, prompt } = req.body;
-        const result = await generateTextService(model, prompt);
+        const { persona, model, prompt } = req.body;
+        const result = await generateTextService(persona, model, prompt);
         res.status(200).json({ result });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -30,9 +30,9 @@ export const generateFromImage = async (req, res) => {
     try {
         if (!req.file) return res.status(400).json({ message: "File gambar wajib diunggah." });
 
-        const { model, prompt } = req.body;
+        const { persona, model, prompt } = req.body;
 
-        const result = await generateMultimodalService(model, prompt, req.file);
+        const result = await generateMultimodalService(persona, model, prompt, req.file);
         res.status(200).json({ result });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -43,8 +43,8 @@ export const generateFromDocument = async (req, res) => {
     try {
         if (!req.file) return res.status(400).json({ message: "File dokumen wajib diunggah." });
 
-        const { model, prompt } = req.body;
-        const result = await generateMultimodalService(model, prompt, req.file);
+        const { persona, model, prompt } = req.body;
+        const result = await generateMultimodalService(persona, model, prompt, req.file);
         res.status(200).json({ result });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -55,8 +55,8 @@ export const generateFromAudio = async (req, res) => {
     try {
         if (!req.file) return res.status(400).json({ message: "File audio wajib diunggah." });
 
-        const { model, prompt } = req.body;
-        const result = await generateMultimodalService(model, prompt, req.file);
+        const { persona, model, prompt } = req.body;
+        const result = await generateMultimodalService(persona, model, prompt, req.file);
         res.status(200).json({ result });
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -74,6 +74,7 @@ export const generateChat = async (req, res) => {
             schema: {
                 type: "object",
                 properties: {
+                    persona: { type: "string", example: "default-persona" },
                     model: { type: "string", example: "gemini-3.1-flash-lite" },
                     conversation: { 
                         type: "array", 
@@ -90,7 +91,7 @@ export const generateChat = async (req, res) => {
         }
     */
     try {
-        let { model, conversation } = req.body;
+        let { persona, model, conversation } = req.body;
 
         // VALIDASI 1: Pastikan properti conversation dikirim oleh frontend
         if (!conversation) {
@@ -108,7 +109,7 @@ export const generateChat = async (req, res) => {
             return res.status(400).json({ message: "Properti 'conversation' harus berupa array riwayat pesan." });
         }
 
-        const result = await generateChatService(model, conversation);
+        const result = await generateChatService(persona, model, conversation);
         res.status(200).json({ result });
     } catch (error) {
         res.status(500).json({ message: error.message });
