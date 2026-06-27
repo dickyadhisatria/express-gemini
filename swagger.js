@@ -12,11 +12,11 @@ const doc = {
     servers: [
         {
             description: 'Server Lokal',
-            url: 'http://localhost:3000/api/ai'
+            url: `http://localhost:${process.env.PORT || 3000}/api/ai`
         },
         {
             description: 'Server Staging',
-            url: 'https://hsbp3wdb-3000.asse.devtunnels.ms/api/ai'
+            url: `https://staging.example.com/api/ai`
         }
     ],
 };

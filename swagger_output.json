@@ -75,6 +75,9 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -109,8 +112,8 @@
         "summary": "Analisis Gambar",
         "description": "",
         "responses": {
-          "default": {
-            "description": ""
+          "400": {
+            "description": "Bad Request"
           }
         },
         "requestBody": {
@@ -148,8 +151,8 @@
         "summary": "Ringkas Dokumen (PDF, TXT)",
         "description": "",
         "responses": {
-          "default": {
-            "description": ""
+          "400": {
+            "description": "Bad Request"
           }
         },
         "requestBody": {
@@ -187,8 +190,8 @@
         "summary": "Transkrip Audio",
         "description": "",
         "responses": {
-          "default": {
-            "description": ""
+          "400": {
+            "description": "Bad Request"
           }
         },
         "requestBody": {
@@ -210,6 +213,63 @@
                     "type": "string",
                     "format": "binary",
                     "description": "Berkas audio"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/generate-chat": {
+      "post": {
+        "tags": [
+          "Gemini AI Chat"
+        ],
+        "summary": "Menghasilkan teks dari percakapan",
+        "description": "",
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "model": {
+                    "type": "string",
+                    "example": "gemini-2.5-flash"
+                  },
+                  "conversation": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "role": {
+                          "type": "string",
+                          "enum": [
+                            "user",
+                            "model",
+                            "system"
+                          ]
+                        },
+                        "parts": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "text": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
