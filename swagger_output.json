@@ -12,7 +12,7 @@
     },
     {
       "description": "Server Staging",
-      "url": "https://hsbp3wdb-3000.asse.devtunnels.ms/api/ai"
+      "url": "https://staging.example.com/api/ai"
     }
   ],
   "paths": {
@@ -48,7 +48,7 @@
                         },
                         "example": {
                           "type": "string",
-                          "example": "gemini-2.5-flash"
+                          "example": "gemini-3.1-flash-lite"
                         }
                       }
                     },
@@ -91,7 +91,7 @@
                 "properties": {
                   "model": {
                     "type": "string",
-                    "example": "gemini-2.5-flash"
+                    "example": "gemini-3.1-flash-lite"
                   },
                   "prompt": {
                     "type": "string",
@@ -125,7 +125,7 @@
                 "properties": {
                   "model": {
                     "type": "string",
-                    "example": "gemini-2.5-flash"
+                    "example": "gemini-3.1-flash-lite"
                   },
                   "prompt": {
                     "type": "string",
@@ -164,7 +164,7 @@
                 "properties": {
                   "model": {
                     "type": "string",
-                    "example": "gemini-2.5-flash"
+                    "example": "gemini-3.1-flash-lite"
                   },
                   "prompt": {
                     "type": "string",
@@ -203,7 +203,7 @@
                 "properties": {
                   "model": {
                     "type": "string",
-                    "example": "gemini-2.5-flash"
+                    "example": "gemini-3.1-flash-lite"
                   },
                   "prompt": {
                     "type": "string",
@@ -242,7 +242,7 @@
                 "properties": {
                   "model": {
                     "type": "string",
-                    "example": "gemini-2.5-flash"
+                    "example": "gemini-3.1-flash-lite"
                   },
                   "conversation": {
                     "type": "array",
@@ -257,16 +257,8 @@
                             "system"
                           ]
                         },
-                        "parts": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "text": {
-                                "type": "string"
-                              }
-                            }
-                          }
+                        "text": {
+                          "type": "string"
                         }
                       }
                     }

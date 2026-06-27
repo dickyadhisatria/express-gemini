@@ -1,6 +1,6 @@
 # 🚀 Express Gemini API
 
-A powerful, multimodal RESTful API built with **Node.js**, **Express**, and **Clean Architecture**. This project integrates the **Google Gemini 2.5 Flash AI** to process text, images, documents, and audio seamlessly. 
+A powerful, multimodal RESTful API built with **Node.js**, **Express**, and **Clean Architecture**. This project integrates the **Google Gemma 4, Gemini Flash, and Gemini Flash Lite AI** to process text, images, documents, and audio seamlessly. 
 
 It also features auto-generated API documentation using **Swagger UI**, making it incredibly easy to test and interact with the endpoints directly from your browser.
 
@@ -21,7 +21,7 @@ It also features auto-generated API documentation using **Swagger UI**, making i
 
 - **Runtime:** [Node.js](https://nodejs.org/) (v18+)
 - **Framework:** [Express.js](https://expressjs.com/)
-- **AI Integration:** [@google/genai](https://www.npmjs.com/package/@google/genai) (Gemini 2.5 Flash)
+- **AI Integration:** [@google/genai](https://www.npmjs.com/package/@google/genai) (Gemma 4, Gemini Flash, Gemini Flash Lite)
 - **File Handling:** [Multer](https://www.npmjs.com/package/multer) (Memory Storage)
 - **Documentation:** [Swagger Autogen](https://swagger-autogen.github.io/) & Swagger UI Express
 - **Logger:**  [Morgan](https://expressjs.com/en/resources/middleware/morgan/) (Logger Middleware)
@@ -72,6 +72,10 @@ http://localhost:3000/api-docs
 ## 📁 Folder Structure
 ```
 express-gemini/
+├── public/
+│   ├── index.html      # UI HTML file
+│   ├── style.css       # UI CSS file
+│   ├── script.js       # UI JavaScript file
 ├── src/
 │   ├── config/          # API Key and Swagger configuration
 │   ├── middlewares/     # Multer setup for memory storage and Error Handling

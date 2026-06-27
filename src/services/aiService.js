@@ -16,16 +16,19 @@ export const generateTextService = async (model, prompt) => {
     return response.text;
 };
 
-export const generateMultimodalService = async (model, prompt, fileBuffer, mimeType) => {
-    // Ubah file buffer menjadi base64 untuk input multimodal
-    const base64Data = fileBuffer.toString("base64");
+export const generateMultimodalService = async (model, prompt, file) => {
+    // Konversi buffer file menjadi base64
+    if (!file || !file.buffer) {
+        throw new Error("File tidak valid atau tidak ada buffer.");
+    }
 
+    const base64Data = file.buffer.toString('base64');
 
     const response = await ai.models.generateContent({
         model: model || GEMINI_MODEL,
         contents: [
             { text: prompt, type: "text" },
-            { inlineData: { data: base64Data, mimeType: mimeType } }
+            { inlineData: { data: base64Data, mimeType: file.mimetype } }
         ],
         config: {
             systemInstruction: systemInstructionMultimodal,

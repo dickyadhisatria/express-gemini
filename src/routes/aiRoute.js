@@ -16,7 +16,7 @@ import {
     generateChatSchema
 } from '../validators/aiValidator.js';
 /*  #swagger.tags = ['Gemini AI']
-    #swagger.description = 'Rute untuk mengakses layanan AI Gemini 2.5 Flash'
+    #swagger.description = 'Rute untuk mengakses layanan AI Gemini (Teks, Gambar, Dokumen, Audio, dan Chatbot Multi-turn)'
 */
 
 const router = express.Router();
@@ -31,7 +31,7 @@ router.post('/generate-text', validate(generateTextSchema), (req, res) => {
                     schema: {
                         type: "object",
                         properties: {
-                            model: { type: "string", example: "gemini-2.5-flash" },
+                            model: { type: "string", example: "gemini-3.1-flash-lite" },
                             prompt: { type: "string", example: "Jelaskan apa itu AI" }
                         }
                     }
@@ -53,7 +53,7 @@ router.post('/generate-from-image', upload.single('image'), validate(generateFro
                     schema: {
                         type: "object",
                         properties: {
-                            model: { type: "string", example: "gemini-2.5-flash" },
+                            model: { type: "string", example: "gemini-3.1-flash-lite" },
                             prompt: { type: "string", example: "Deskripsikan gambar ini" },
                             image: { type: "string", format: "binary", description: "Berkas gambar" }
                         }
@@ -76,7 +76,7 @@ router.post('/generate-from-document', upload.single('document'), validate(gener
                     schema: {
                         type: "object",
                         properties: {
-                            model: { type: "string", example: "gemini-2.5-flash" },
+                            model: { type: "string", example: "gemini-3.1-flash-lite" },
                             prompt: { type: "string", example: "Tolong buat ringkasan dari dokumen ini" },
                             document: { type: "string", format: "binary", description: "Berkas dokumen (PDF, TXT)" }
                         }
@@ -99,7 +99,7 @@ router.post('/generate-from-audio', upload.single('audio'), validate(generateFro
                     schema: {
                         type: "object",
                         properties: {
-                            model: { type: "string", example: "gemini-2.5-flash" },
+                            model: { type: "string", example: "gemini-3.1-flash-lite" },
                             prompt: { type: "string", example: "Tolong buatkan transkrip dari rekaman ini" },
                             audio: { type: "string", format: "binary", description: "Berkas audio" }
                         }
@@ -121,22 +121,14 @@ router.post('/generate-chat', validate(generateChatSchema), (req, res) => {
                     schema: {
                         type: "object",
                         properties: {
-                            model: { type: "string", example: "gemini-2.5-flash" },
+                            model: { type: "string", example: "gemini-3.1-flash-lite" },
                             conversation: {
                                 type: "array",
                                 items: {
                                     type: "object",
                                     properties: {
                                         role: { type: "string", enum: ["user", "model", "system"] },
-                                        parts: {
-                                            type: "array",
-                                            items: {
-                                                type: "object",
-                                                properties: {
-                                                    text: { type: "string" }
-                                                }
-                                            }
-                                        }
+                                        text: { type: "string" }
                                     }
                                 }
                             }
