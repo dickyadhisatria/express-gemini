@@ -1,4 +1,7 @@
 import swaggerAutogen from 'swagger-autogen';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const doc = {
     openapi: "3.0.0", // Menegaskan penggunaan format OpenAPI 3.x
@@ -12,7 +15,7 @@ const doc = {
     servers: [
         {
             description: 'Server Lokal',
-            url: `http://localhost:${process.env.PORT || 3000}/api/ai`
+            url: `http://localhost:${dotenv.config().parsed.PORT || 3000}/api/ai`
         },
         {
             description: 'Server Staging',

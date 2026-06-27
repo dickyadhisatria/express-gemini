@@ -21,10 +21,13 @@ It also features auto-generated API documentation using **Swagger UI**, making i
 
 - **Runtime:** [Node.js](https://nodejs.org/) (v18+)
 - **Framework:** [Express.js](https://expressjs.com/)
+- **Logger:**  [Morgan](https://expressjs.com/en/resources/middleware/morgan/) (Logger Middleware)
+- **Documentation:** [Swagger Autogen](https://swagger-autogen.github.io/) & Swagger UI Express
+- **Rate Limiting:** [Express Rate Limit](https://www.npmjs.com/package/express-rate-limit) (Prevent Abuse)
+- **Environment Variables:** [dotenv](https://www.npmjs.com/package/dotenv) (Secure API Key Management)
 - **AI Integration:** [@google/genai](https://www.npmjs.com/package/@google/genai) (Gemma 4, Gemini Flash, Gemini Flash Lite)
 - **File Handling:** [Multer](https://www.npmjs.com/package/multer) (Memory Storage)
-- **Documentation:** [Swagger Autogen](https://swagger-autogen.github.io/) & Swagger UI Express
-- **Logger:**  [Morgan](https://expressjs.com/en/resources/middleware/morgan/) (Logger Middleware)
+- **Validation:** [Zod](https://www.npmjs.com/package/zod) (Input Validation)
 
 ---
 
@@ -67,6 +70,7 @@ http://localhost:3000/api-docs
 | POST | /api/ai/generate-from-image | Multimodal image analysis | multipart/form-data |
 | POST | /api/ai/generate-from-document | Multimodal doc summarization | multipart/form-data |
 | POST | /api/ai/generate-from-audio | Multimodal audio transcription | multipart/form-data |
+| POST | /api/ai/generate-chat | Multimodal chat | multipart/form-data |
 ```
 
 ## 📁 Folder Structure
@@ -78,10 +82,11 @@ express-gemini/
 │   ├── script.js       # UI JavaScript file
 ├── src/
 │   ├── config/          # API Key and Swagger configuration
-│   ├── middlewares/     # Multer setup for memory storage and Error Handling
-│   ├── services/        # Business logic & Gemini AI prompt handling
 │   ├── controllers/     # HTTP Request/Response and Swagger Annotations
+│   ├── middlewares/     # Multer setup for memory storage, Error Handling, and Validation
 │   ├── routes/          # API endpoint definitions
+│   ├── services/        # Business logic & Gemini AI prompt handling
+│   ├── validators/      # Input validation schemas for requests
 │   └── app.js           # Express App Entry Point and Rate Limiting
 ├── .env                 # Environment variables (Ignored in Git)
 ├── package.json         # Dependencies and scripts

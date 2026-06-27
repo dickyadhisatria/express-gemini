@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 // Skema dasar untuk model dan prompt yang sering diulang
 const baseAISchema = {
-  model: z.string().optional().default('gemini-2.5-flash'),
+  model: z.string().optional().default('gemini-flash-lite-latest'),
   prompt: z.string({ required_error: 'Prompt wajib diisi' }).min(1, 'Prompt tidak boleh kosong'),
 };
 
@@ -53,7 +53,7 @@ export const generateFromAudioSchema = z.object({
 // 5. Validasi untuk generateChat (Struktur Percakapan)
 export const generateChatSchema = z.object({
   body: z.object({
-    model: z.string().optional().default('gemini-3.1-flash-lite'),
+    model: z.string().optional().default('gemini-flash-lite-latest'),
     
     // z.preprocess akan mencegat data sebelum divalidasi
     conversation: z.preprocess(

@@ -8,6 +8,9 @@ import swaggerUi from 'swagger-ui-express';
 import morgan from 'morgan';
 import rateLimit from "express-rate-limit";
 import aiRoutes from './routes/aiRoute.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -40,7 +43,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // Pemasangan rute utama
 app.use('/api/ai', aiRoutes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = dotenv.config().parsed.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`🚀 Server berjalan di http://localhost:${PORT}`);
     console.log(`📚 Dokumentasi Autogen siap di http://localhost:${PORT}/api-docs`);
